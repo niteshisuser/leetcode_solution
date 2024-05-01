@@ -7,22 +7,19 @@ class Solution {
         if (number.length() < 4) {
             return number;
         }
-        String newNum = "";
+        StringBuilder ans = new StringBuilder();
         while (number.length() > 0) {
             if (number.length() < 4) {
-                newNum += number;
+                ans.append(number);
                 number = "";
             } else if (number.length() == 4) {
-                newNum += number.substring(0, 2);
-                newNum += "-";
-                newNum += number.substring(2);
+                ans.append(number.substring(0, 2) + "-"+number.substring(2));
                 number = "";
             } else if (number.length() > 4) {
-                newNum += number.substring(0, 3);
-                 newNum += "-";
+                ans.append(number.substring(0, 3) + "-");
                 number = number.substring(3);
             }
         }
-        return newNum;
+        return ans.toString();
     }
 }
