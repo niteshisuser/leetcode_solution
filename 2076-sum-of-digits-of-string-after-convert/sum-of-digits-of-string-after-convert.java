@@ -2,7 +2,7 @@ class Solution {
     String getSumOfDigit(String data){
         int sum = 0;
         for(char k:data.toCharArray()){
-            sum += Integer.parseInt(k+"");
+            sum += Character.getNumericValue(k);
         }
         return sum+"";
     }
