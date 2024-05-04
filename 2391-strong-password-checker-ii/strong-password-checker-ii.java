@@ -6,7 +6,6 @@ class Solution {
         boolean upper = false;
         boolean digit = false;
         boolean special = false;
-        boolean adjacent = false;
         String specialChar="!@#$%^&*()-+";
         for(int i=0;i<p;i++){
             if(Character.isLowerCase(password.charAt(i))) lower = true;
@@ -14,10 +13,10 @@ class Solution {
             else if(Character.isDigit(password.charAt(i))) digit = true;
             else if(specialChar.contains(""+password.charAt(i))) special=true;
             if(i>0){
-                if(password.charAt(i)==password.charAt(i-1)) adjacent = true;
+                if(password.charAt(i)==password.charAt(i-1)) return false;
             }
         }
-        return lower && upper && digit && special && !adjacent;
+        return lower && upper && digit && special;
 
 
     }
