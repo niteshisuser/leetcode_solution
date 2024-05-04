@@ -17,7 +17,5 @@ class Solution {
             }
         }
         return lower && upper && digit && special;
-
-
     }
 }
