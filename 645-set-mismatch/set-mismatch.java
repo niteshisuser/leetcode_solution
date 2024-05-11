@@ -1,6 +1,6 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        Arrays.sort(nums);
+       Arrays.sort(nums);
         int ans[] = new int[2];
         int n = nums.length;
         int totalSum = n*(n+1)/2;
