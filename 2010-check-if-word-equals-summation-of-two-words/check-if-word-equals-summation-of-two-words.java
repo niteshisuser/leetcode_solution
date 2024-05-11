@@ -1,10 +1,12 @@
 class Solution {
     int getNumeric(String a){
-        StringBuilder sb = new StringBuilder();
+        int num = 0;
+        //StringBuilder sb = new StringBuilder();
         for(char k:a.toCharArray()){
-            sb.append(k-'a');
+            num = num*10 + (k-'a');
         }
-        return Integer.parseInt(sb.toString());
+        //return Integer.parseInt(sb.toString());
+        return num;
     }
     public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
         int f= getNumeric(firstWord);
