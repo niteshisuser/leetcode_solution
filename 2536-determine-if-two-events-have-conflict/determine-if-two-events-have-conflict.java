@@ -15,7 +15,7 @@ class Solution {
         String event2Et = event2[1];
         String ev2Et[] = event2Et.split(":");
         int event2EndTime = Integer.parseInt(ev2Et[0])*60+Integer.parseInt(ev2Et[1]);
-        System.out.println("event1StartTime:"+event1StartTime+",Event1EndTime:"+event1EndTime+",Evnet2StartTime:"+event2StartTime+",Event2EndTime:"+event2EndTime);
+        //System.out.println("event1StartTime:"+event1StartTime+",Event1EndTime:"+event1EndTime+",Evnet2StartTime:"+event2StartTime+",Event2EndTime:"+event2EndTime);
         return (event1StartTime>=event2StartTime && event1StartTime<=event2EndTime) || (event1EndTime>=event2StartTime && event1EndTime<=event2EndTime) || ((event2StartTime>=event1StartTime && event2StartTime<=event1EndTime) || (event2EndTime>=event1StartTime && event2EndTime<=event1EndTime));
 
 
