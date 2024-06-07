@@ -1,28 +1,22 @@
+import java.math.BigInteger;
 class Solution {
     public int numDifferentIntegers(String word) {
-        StringBuffer sb = new StringBuffer(word);
-        for (int i=0; i<word.length(); i++) {
-            char ch = word.charAt(i);
-            if (!Character.isDigit(ch)) sb.setCharAt(i, '\s');
+        char w[] = word.toCharArray();
+        for(int i=0;i<w.length;i++)
+        {
+            if(w[i]>='a' && w[i]<='z') w[i]=' ';
+        }
+        word = new String(w);
+        System.out.println("Word:"+word);
+        Set<BigInteger> set =new HashSet();
+        for(String s:word.split("\\s+")){
+            System.out.print(s + ":");
+            s = s.trim();
+            if(!s.equals(""))
+                set.add(new BigInteger(s));
+
         }
 
-        String[] nums = sb.toString().split(" ");
-        Set<String> st = new HashSet<>();
-        for (int i=0; i<nums.length; i++) {
-            if (!nums[i].trim().equals("")) {
-                StringBuffer sb2 = new StringBuffer(nums[i].trim());
-                int j =0;
-                while (sb2.length() > 0) {
-                    char ch = sb2.charAt(j);
-                    if (ch != '0') break;
-            
-                    sb2.deleteCharAt(j);
-                }
-
-                st.add(sb2.toString());
-            }
-        }
-
-        return st.size();
+        return set.size();
     }
 }
