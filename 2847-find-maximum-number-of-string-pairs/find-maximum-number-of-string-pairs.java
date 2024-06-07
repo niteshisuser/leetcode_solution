@@ -3,8 +3,9 @@ class Solution {
         //Arrays.sort(words);
         //for(String w:words) System.out.print(w + " ");
         Map<String,Integer> map = new HashMap();
+        char t[];
         for(String w:words) {
-            char t[] = w.toCharArray();
+            t = w.toCharArray();
             Arrays.sort(t);
             w=new String(t);
             map.put(w,map.containsKey(w)?1+map.get(w):1);
