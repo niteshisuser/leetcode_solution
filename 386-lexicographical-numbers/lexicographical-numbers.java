@@ -1,11 +1,12 @@
 class Solution {
     public List<Integer> lexicalOrder(int n) {
-        Set<String> set = new TreeSet();
-        Set<Integer> s = new LinkedHashSet();
-        for(int i=1;i<=n;i++) set.add(""+i);
-        for(String ss:set)
-            s.add(Integer.parseInt(ss));
-        return new ArrayList(s);
+        String ans[] = new String[n+1];
+        int index = 0;
+        for(int i=0;i<=n;i++) ans[i]=(i+"");
+        Arrays.sort(ans);
+        List<Integer> aa = new ArrayList();
+        for(String i:ans) if(!i.equals("0")) aa.add(Integer.parseInt(i));
+        return aa;
         
 
     }
