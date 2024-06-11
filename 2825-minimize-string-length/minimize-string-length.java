@@ -1,7 +1,8 @@
 class Solution {
     public int minimizedStringLength(String s) {
-        Set<Character> set = new HashSet();
-        for(char k:s.toCharArray()) set.add(k);
-        return set.size();
+        int a[] = new int[26];
+        for(char k:s.toCharArray()) a[k-'a']++;
+        int ans = 0;
+        for(int i:a) if(i>0) ans++; return ans;
     }
 }
