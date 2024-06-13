@@ -7,7 +7,6 @@ class Solution {
             s = s.replace("abc","");
             if(old.equals(s)) return false;
             old = s;
-            System.out.println("s:"+s+",old:"+old);
         }
         return true;
     }
