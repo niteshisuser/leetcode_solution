@@ -4,7 +4,7 @@ class Solution {
         if(n%3!=0) return false;
         String old = s;
         while(s.length()!=0){
-            s = s.replaceAll("abc","");
+            s = s.replace("abc","");
             if(old.equals(s)) return false;
             old = s;
         }
