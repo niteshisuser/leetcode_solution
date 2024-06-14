@@ -1,50 +1,49 @@
 class AllOne {
-    
-    Map<String,Integer> freqMap;
-    TreeMap<Integer,Set<String>> treeMap;
+    private final Map<String, Integer> stringCount;
+    private final TreeMap<Integer, Set<String>> bucketMap;
     public AllOne() {
-        freqMap=new HashMap<>();
-        treeMap=new TreeMap<>();
+        stringCount = new HashMap<>();
+        bucketMap = new TreeMap<>();
     }
     
     public void inc(String key) {
-        freqMap.putIfAbsent(key,0);
-        int currFreq=freqMap.get(key);
-        if(treeMap.containsKey(currFreq)&&treeMap.get(currFreq).contains(key)){
-            treeMap.get(currFreq).remove(key);
-            if(treeMap.get(currFreq).isEmpty())
-                treeMap.remove(currFreq);
-        }
-        freqMap.put(key,currFreq+1);
-        treeMap.putIfAbsent(currFreq+1,new HashSet<>());
-        treeMap.get(currFreq+1).add(key);
+        int newCount = stringCount.merge(key, 1, Integer::sum);
+        removeFromOldBucket(key, newCount - 1);
+        addToNewBucket(key, newCount);
     }
     
     public void dec(String key) {
-        int currFreq=freqMap.get(key);
-        treeMap.get(currFreq).remove(key);
-        if(treeMap.get(currFreq).isEmpty())
-            treeMap.remove(currFreq);
-        freqMap.put(key,currFreq-1);
-        if(currFreq-1>0){
-            treeMap.putIfAbsent(currFreq-1,new HashSet<>());
-            treeMap.get(currFreq-1).add(key);
+        int newCount = stringCount.merge(key, -1, Integer::sum);
+        if (newCount == 0) {
+            stringCount.remove(key);
+        }
+        removeFromOldBucket(key, newCount + 1);
+        addToNewBucket(key, newCount);
+    }
+
+    private void removeFromOldBucket(String key, int bucketKey) {
+        if (bucketKey > 0) {
+            Set<String> oldBucket = bucketMap.get(bucketKey);
+            if (oldBucket.size() == 1) {
+                oldBucket.clear();
+                bucketMap.remove(bucketKey);
+            } else {
+                oldBucket.remove(key);
+            }
         }
     }
-    
+
+    private void addToNewBucket(String key, int bucketKey) {
+        if (bucketKey > 0) {
+            bucketMap.computeIfAbsent(bucketKey, k -> new HashSet<>()).add(key);
+        }
+    }
+
     public String getMaxKey() {
-        if(treeMap.isEmpty())
-            return "";
-        for(String s:treeMap.get(treeMap.lastKey()))
-             return s;
-        return "";
+        return bucketMap.isEmpty() ? "" : bucketMap.lastEntry().getValue().iterator().next();
     }
     
     public String getMinKey() {
-        if(treeMap.isEmpty())
-            return "";
-        for(String s:treeMap.get(treeMap.firstKey()))
-             return s;
-        return "";
+        return bucketMap.isEmpty() ? "" : bucketMap.firstEntry().getValue().iterator().next();
     }
 }
