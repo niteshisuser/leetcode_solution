@@ -5,9 +5,7 @@ class Solution {
             map[i]++;
             if(map[i]>2) return false;
         }
-
-        for(int i:map)
-            if(i>2) return false;
+        if(map[nums[nums.length-1]]>2) return false;
         return true;
     }
 }
