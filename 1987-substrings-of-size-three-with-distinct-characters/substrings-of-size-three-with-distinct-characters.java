@@ -10,7 +10,7 @@ class Solution {
         String temp = "";
         for(int i=0;i<=len-3;i++){
             temp = s.substring(i,i+3);
-            System.out.println("temp:"+temp);
+            //System.out.println("temp:"+temp);
             if(isGood(temp)) cnt++;
         }
         return cnt;
