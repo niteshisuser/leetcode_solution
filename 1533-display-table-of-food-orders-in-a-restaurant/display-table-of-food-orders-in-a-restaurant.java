@@ -3,8 +3,10 @@ class Solution {
         Map<String,Integer> temp;
         Set<String>foodItem = new TreeSet();
         TreeMap<Integer,Map<String,Integer>> map = new TreeMap();
+        int tableNumber = 0;
+        String item="item";
         for(List<String> list: orders){
-            int tableNumber = Integer.parseInt(list.get(1));
+            tableNumber = Integer.parseInt(list.get(1));
             temp = map.get(tableNumber);
             //System.out.println("Temp:"+temp);
             if(temp == null){
@@ -13,8 +15,7 @@ class Solution {
                 foodItem.add(list.get(2));
             }
             else{
-                //temp.put(list.get(2),1+temp.get(list.get(2)));
-                String item = list.get(2);
+                item = list.get(2);
                 foodItem.add(item);
                 temp.put(item,temp.containsKey(item)?1+temp.get(item):1);
             }
