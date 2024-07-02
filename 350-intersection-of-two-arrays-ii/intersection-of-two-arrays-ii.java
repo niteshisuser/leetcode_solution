@@ -1,27 +1,26 @@
-import java.io.*;
 class Solution {
-    int min(int a,int b){
-        return a<b?a:b;
-    }
     public int[] intersect(int[] nums1, int[] nums2) {
-        /*
-        1->2
-        2->2
-
-        2->2
-        */
-        int MAX = 1001;
-        int [] n1 = new int[MAX];
-        int [] n2 = new int[MAX];
-        for(int i:nums1) n1[i]++;
-        for(int i:nums2) n2[i]++;
-        List<Integer> ans = new ArrayList();
-        for(int i=0;i<MAX;i++){
-            if(n1[i]>0 && n2[i]>0){
-                for(int j=0;j<min(n1[i],n2[i]);j++)
-                    ans.add(i);
+        int l1 = nums1.length;
+        int l2 = nums2.length;
+        int i = 0, j = 0, k = 0;
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        while( i < l1 && j < l2)
+        {
+            if(nums1[i] < nums2[j])
+            {
+                i++;
+            }
+            else if(nums1[i] > nums2[j])
+            {
+                j++;
+            }
+            else
+            {
+                nums1[k++] = nums1[i++];
+                j++;
             }
         }
-        return ans.stream().mapToInt(i -> i).toArray();
+        return Arrays.copyOfRange(nums1,0,k);
     }
 }
