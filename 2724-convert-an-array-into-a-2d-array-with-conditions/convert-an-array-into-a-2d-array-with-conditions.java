@@ -5,8 +5,7 @@ class Solution
         List<List<Integer>>outer=new ArrayList<>();
         int arr[]=new int[201];
         int i,k=0;
-        for(i=0;i<nums.length;i++)
-        arr[nums[i]]++;
+        for(int ii:nums) arr[ii]++;
         while(k<=nums.length)
         {
           List<Integer>inner=new ArrayList<>();
