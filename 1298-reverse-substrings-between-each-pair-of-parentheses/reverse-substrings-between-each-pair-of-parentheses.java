@@ -14,7 +14,6 @@ class Solution {
                 res.append(char_s);
             }
         }
-
         return res.toString();
     }
 }
