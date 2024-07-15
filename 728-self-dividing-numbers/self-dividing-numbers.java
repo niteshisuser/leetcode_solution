@@ -1,22 +1,20 @@
 class Solution {
     public List<Integer> selfDividingNumbers(int left, int right) {
-        List<Integer> res = new ArrayList<Integer>();
-        for (int i = left; i <= right; i++) {
-            if (isSelfDrivingNumber(i)) {
-                res.add(i);
-            }
+        List<Integer> list=new ArrayList<>();
+        int n1=left,n2=right;
+        for(int i=left;i<=right;i++){
+            if(check(i))
+            list.add(i);
         }
-        return res;
+        return list;
     }
-
-    private boolean isSelfDrivingNumber(int num) {
-        int curNum = num;
-        while (curNum > 0) {
-            int curDigit = curNum % 10;
-            if (curDigit == 0 || num % curDigit != 0) {
-                return false;
-            }
-            curNum /= 10;
+    public boolean check(int n){
+        int digit=n;
+        while(n>0){
+            int div=n%10;
+            if(div==0) return false;
+            if(digit%div != 0) return false;
+            n=n/10;
         }
         return true;
     }
