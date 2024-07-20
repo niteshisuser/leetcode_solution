@@ -8,9 +8,7 @@ class Solution {
                 if(rowSum[i] < colSum[j]){
                     matrix[i][j] = rowSum[i];
                 }
-                else if(rowSum[i] > colSum[j]){
-                    matrix[i][j] = colSum[j];
-                }
+                
                 else{
                     matrix[i][j] = colSum[j];
                 }
