@@ -1,11 +1,12 @@
 class Solution {
     public long appealSum(String s) {
-    long res = 0, cur = 0, prev[] = new long[26];
-    for (int i = 0; i < s.length(); ++i) {
-        cur += i + 1 - prev[s.charAt(i) - 'a'];
-        prev[s.charAt(i) - 'a'] = i + 1;
-        res += cur;
-    }    
-    return res;
-}
+        int dp [] = new int[26];
+        long result = 0L;
+        for(int index = 0; index < s.length(); index++)
+        {
+            dp[s.charAt(index) - 'a'] = index + 1;
+            for(int num:dp) result += num;
+        }
+        return result;
+    }
 }
