@@ -1,26 +1,28 @@
+// lagrange 4 number theorem::
+
 class Solution {
-    
-    public int numSquares(int n) {
-        int arr[]=new int [n+1];
-        Arrays.fill(arr,-1);
-     return solve(n,arr);   
-    }
+    public int numSquares(int n){
 
-    public int solve(int n,int []arr)
-    {
-        if(arr[n]!=-1)
-        return arr[n];
-        if(n<=0)
-        return 0;
-        int res=0;
-        int min=Integer.MAX_VALUE;
+    //finding if it is a perfect square
 
-        for(int i=1;i<=Math.sqrt(n);i++)
-        {
-            res=1+solve(n-(i*i),arr);
-            min=Math.min(min,res);
+        if(isPerfect(n)) return 1;
+
+    //finding if it is sum of two square
+
+        for(int i=1;i*i<=n;i++){
+            if(isPerfect(n-(i*i))) return 2; 
         }
 
-        return arr[n]= min;
+    //finding if it is sum of 4 by equation
+        while(n%4==0) n/=4;
+        if(n%8==7) return 4;
+
+    //else the only possibility
+        return 3;
+    }
+    public static boolean isPerfect(int s){
+        int s1=(int)Math.sqrt(s);
+        if(s1*s1==s) return true;
+        return false;
     }
 }
