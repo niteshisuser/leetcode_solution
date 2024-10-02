@@ -12,11 +12,8 @@ class Solution {
 
         for (int r = 0; r < 9; r++) {
             for (int c = 0; c < 9; c++) {
-                if (board[r][c] == '.') {
-                    continue;
-                }
-
-                char value = board[r][c];
+                if (board[r][c] != '.') {
+                     char value = board[r][c];
                 int boxIndex = (r / 3) * 3 + (c / 3);
 
                 if (rows[r].contains(value) || cols[c].contains(value) || boxes[boxIndex].contains(value)) {
@@ -26,6 +23,9 @@ class Solution {
                 rows[r].add(value);
                 cols[c].add(value);
                 boxes[boxIndex].add(value);
+                }
+
+                
             }
         }
 
