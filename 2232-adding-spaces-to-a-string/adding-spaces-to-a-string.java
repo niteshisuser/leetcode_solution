@@ -1,20 +1,16 @@
 class Solution {
     public String addSpaces(String s, int[] spaces) {
-        /*
-        EnjoyYourCoffe
-        startIndex = 0;
-        answer = substring(startIndex,space[i])+" ";
-        startIndex = spaces[i];
-
-        */
-        StringBuilder sb = new StringBuilder();
-        int sLen = s.length();
-        int startIndex = 0;
-        for(int i:spaces){
-            sb.append(s.substring(startIndex,i) + " ");
-            startIndex = i;
+        int n = s.length();
+        int spaceLen = spaces.length;
+        int spaceIndex = 0;
+        StringBuilder ans = new StringBuilder();
+        for(int i=0;i<n;i++){
+            if(spaceIndex<spaceLen && i==spaces[spaceIndex]){
+                ans.append(" ");
+                spaceIndex++;
+            }
+            ans.append(s.charAt(i));
         }
-        sb.append(s.substring(startIndex));
-        return sb.toString();
+        return ans.toString();
     }
 }
